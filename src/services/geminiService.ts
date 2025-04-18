@@ -1,3 +1,4 @@
+
 import { GeminiParams, GeminiResult } from "@/types";
 
 const GOOGLE_GEMINI_API_KEY = "AIzaSyA2p-IW_M5H1aJ-ZNOjK5VxowzC3rP0o1A";
@@ -10,6 +11,8 @@ const GEMINI_MODEL = "gemini-2.0-flash";
 export const generateWithGemini = async (params: GeminiParams): Promise<GeminiResult> => {
   try {
     const url = `${GEMINI_API_BASE_URL}/models/${GEMINI_MODEL}:generateContent?key=${GOOGLE_GEMINI_API_KEY}`;
+    
+    console.log("Gemini API request to:", url);
     
     const response = await fetch(url, {
       method: "POST",
@@ -28,10 +31,22 @@ export const generateWithGemini = async (params: GeminiParams): Promise<GeminiRe
     });
 
     if (!response.ok) {
-      throw new Error(`Gemini API returned ${response.status}: ${await response.text()}`);
+      const errorText = await response.text();
+      console.error(`Gemini API error: ${response.status} - ${errorText}`);
+      return { 
+        text: "I'm sorry, but I couldn't generate a response right now. This could be due to API rate limits or service availability." 
+      };
     }
 
     const result = await response.json();
+    
+    // Check if the expected response structure exists
+    if (!result.candidates || !result.candidates[0]?.content?.parts?.[0]?.text) {
+      console.error("Unexpected Gemini API response structure:", result);
+      return { 
+        text: "I received an unexpected response format. I'll work on improving this." 
+      };
+    }
     
     // Extract text from Gemini API response
     const text = result.candidates[0].content.parts[0].text;
@@ -39,7 +54,9 @@ export const generateWithGemini = async (params: GeminiParams): Promise<GeminiRe
     return { text };
   } catch (error) {
     console.error("Error in generateWithGemini:", error);
-    throw error;
+    return { 
+      text: "I encountered an error when trying to generate a response. This might be due to network issues or service availability." 
+    };
   }
 };
 

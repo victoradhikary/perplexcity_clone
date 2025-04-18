@@ -1,4 +1,3 @@
-
 import { TavilyEmbedParams, TavilyEmbedResult, TavilySearchParams, TavilySearchResult } from "@/types";
 
 const TAVILY_API_KEY = "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";
@@ -9,6 +8,8 @@ const TAVILY_API_BASE_URL = "https://api.tavily.com/v1";
  */
 export const tavilySearch = async (params: TavilySearchParams): Promise<TavilySearchResult> => {
   try {
+    console.log("Tavily search request:", `${TAVILY_API_BASE_URL}/search`);
+    
     const response = await fetch(`${TAVILY_API_BASE_URL}/search`, {
       method: "POST",
       headers: {
@@ -24,13 +25,43 @@ export const tavilySearch = async (params: TavilySearchParams): Promise<TavilySe
     });
 
     if (!response.ok) {
-      throw new Error(`Tavily search API returned ${response.status}: ${await response.text()}`);
+      const errorText = await response.text();
+      console.error(`Tavily API error: ${response.status} - ${errorText}`);
+      
+      // Return fallback data if API fails
+      return {
+        query: params.query,
+        answer: "I couldn't search for information at this time.",
+        results: [
+          {
+            title: "Search temporarily unavailable",
+            url: "https://example.com",
+            content: "The search service is currently unavailable. This might be due to API rate limits, connection issues, or service maintenance.",
+            score: 1,
+            domain: "example.com"
+          }
+        ]
+      };
     }
 
     return await response.json();
   } catch (error) {
     console.error("Error in tavilySearch:", error);
-    throw error;
+    
+    // Return fallback data on any error
+    return {
+      query: params.query,
+      answer: "I encountered an error while searching for information.",
+      results: [
+        {
+          title: "Search error occurred",
+          url: "https://example.com",
+          content: "There was a problem with the search service. This might be due to network issues, API rate limits, or service maintenance.",
+          score: 1,
+          domain: "example.com"
+        }
+      ]
+    };
   }
 };
 

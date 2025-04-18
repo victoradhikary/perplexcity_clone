@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import ChatBubble from "@/components/ChatBubble";
@@ -9,6 +10,7 @@ import { createGeminiPrompt, generateWithGemini } from "@/services/geminiService
 import { QueryResult, Source } from "@/types";
 import { createQueryResult, getQueryHistory, saveQueryToHistory } from "@/utils/helpers";
 import { v4 as uuidv4 } from "uuid";
+import { toast } from "@/components/ui/sonner";
 
 const Index = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -71,6 +73,11 @@ const Index = () => {
       });
     } catch (error) {
       console.error("Error processing search:", error);
+      
+      // Show error toast
+      toast.error("Something went wrong", {
+        description: "Could not process your search request. Please try again."
+      });
       
       // Create an error result
       const errorQuery = createQueryResult(
