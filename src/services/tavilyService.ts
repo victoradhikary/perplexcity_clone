@@ -1,7 +1,8 @@
 import { TavilyEmbedParams, TavilyEmbedResult, TavilySearchParams, TavilySearchResult } from "@/types";
+import { toast } from "@/components/ui/sonner";
 
 const TAVILY_API_KEY = "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";
-const TAVILY_API_BASE_URL = "https://api.tavily.com/v1";
+const TAVILY_API_BASE_URL = "https://api.tavily.com";
 
 /**
  * Search the web with Tavily AI
@@ -10,23 +11,34 @@ export const tavilySearch = async (params: TavilySearchParams): Promise<TavilySe
   try {
     console.log("Tavily search request:", `${TAVILY_API_BASE_URL}/search`);
     
+    const searchParams = {
+      query: params.query,
+      search_depth: params.search_depth || "basic",
+      max_results: params.max_results || 5,
+      include_answer: params.include_answer ?? true,
+      include_domains: params.include_domains || [],
+      exclude_domains: params.exclude_domains || [],
+      include_raw_content: false,
+      include_images: false,
+      topic: "general",
+      chunks_per_source: 3
+    };
+
     const response = await fetch(`${TAVILY_API_BASE_URL}/search`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${TAVILY_API_KEY}`
+        "Authorization": `Bearer ${TAVILY_API_KEY}`,
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        ...params,
-        include_answer: params.include_answer ?? true,
-        search_depth: params.search_depth ?? "advanced",
-        max_results: params.max_results ?? 5
-      })
+      body: JSON.stringify(searchParams)
     });
 
     if (!response.ok) {
       const errorText = await response.text();
       console.error(`Tavily API error: ${response.status} - ${errorText}`);
+      toast.error("Search error", {
+        description: "Could not fetch search results. Please try again later."
+      });
       
       // Return fallback data if API fails
       return {
@@ -47,6 +59,9 @@ export const tavilySearch = async (params: TavilySearchParams): Promise<TavilySe
     return await response.json();
   } catch (error) {
     console.error("Error in tavilySearch:", error);
+    toast.error("Search error", {
+      description: "An unexpected error occurred. Please try again."
+    });
     
     // Return fallback data on any error
     return {
@@ -114,4 +129,35 @@ export const getSearchSuggestions = async (partialQuery: string): Promise<string
   return mockSuggestions
     .filter(s => s.toLowerCase().includes(partialQuery.toLowerCase()))
     .slice(0, 5);
+};
+
+/**
+ * Extract content from URLs using Tavily AI
+ */
+export const tavilyExtract = async (urls: string | string[]): Promise<any> => {
+  try {
+    const response = await fetch(`${TAVILY_API_BASE_URL}/extract`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${TAVILY_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        urls: Array.isArray(urls) ? urls.join(",") : urls,
+        include_images: false,
+        extract_depth: "basic"
+      })
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`Tavily extract API error: ${response.status} - ${errorText}`);
+      throw new Error(`Failed to extract content: ${errorText}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error in tavilyExtract:", error);
+    throw error;
+  }
 };

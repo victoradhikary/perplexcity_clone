@@ -1,4 +1,3 @@
-
 export interface QueryResult {
   id: string;
   question: string;
@@ -23,12 +22,15 @@ export interface SearchSuggestion {
 
 export interface TavilySearchParams {
   query: string;
-  search_depth?: 'basic' | 'advanced';
+  search_depth?: "basic" | "advanced";
   max_results?: number;
   include_domains?: string[];
   exclude_domains?: string[];
   include_answer?: boolean;
-  max_tokens?: number;
+  topic?: "general" | "academic" | "news";
+  chunks_per_source?: number;
+  time_range?: string | null;
+  days?: number;
 }
 
 export interface TavilySearchResult {
