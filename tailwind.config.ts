@@ -52,6 +52,16 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				perplexity: {
+					light: '#9b87f5',
+					DEFAULT: '#8B5CF6', 
+					dark: '#7E69AB',
+					darkest: '#6E59A5',
+					bg: {
+						light: '#F6F6F7',
+						dark: '#1A1F2C'
+					}
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
