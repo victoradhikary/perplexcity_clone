@@ -1,16 +1,15 @@
-
 import { GeminiParams, GeminiResult } from "@/types";
 
 const GOOGLE_GEMINI_API_KEY = "AIzaSyA2p-IW_M5H1aJ-ZNOjK5VxowzC3rP0o1A";
-const GEMINI_API_BASE_URL = "https://generativelanguage.googleapis.com/v1/models";
-const GEMINI_MODEL = "gemini-pro";
+const GEMINI_API_BASE_URL = "https://generativelanguage.googleapis.com/v1beta";
+const GEMINI_MODEL = "gemini-2.0-flash";
 
 /**
  * Generate text with Google Gemini API
  */
 export const generateWithGemini = async (params: GeminiParams): Promise<GeminiResult> => {
   try {
-    const url = `${GEMINI_API_BASE_URL}/${GEMINI_MODEL}:generateContent?key=${GOOGLE_GEMINI_API_KEY}`;
+    const url = `${GEMINI_API_BASE_URL}/models/${GEMINI_MODEL}:generateContent?key=${GOOGLE_GEMINI_API_KEY}`;
     
     const response = await fetch(url, {
       method: "POST",
@@ -24,13 +23,7 @@ export const generateWithGemini = async (params: GeminiParams): Promise<GeminiRe
               { text: params.prompt }
             ]
           }
-        ],
-        generationConfig: {
-          temperature: params.temperature || 0.7,
-          topK: params.top_k || 40,
-          topP: params.top_p || 0.95,
-          maxOutputTokens: params.max_tokens || 1024,
-        }
+        ]
       })
     });
 
