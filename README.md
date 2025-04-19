@@ -1,73 +1,99 @@
-# Welcome to your Lovable project
+# Project Name
 
-## Project info
+A brief description of what this project does and who it's for.
 
-**URL**: https://lovable.dev/projects/9573ddd4-147f-48e9-88fe-53920dd997c2
+## Prerequisites
 
-## How can I edit this code?
+- **Node.js** (v14 or higher)
+- **npm** (v6 or higher)
 
-There are several ways of editing your application.
+## Installation
 
-**Use Lovable**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/victoradhikary/perplexcity_clone.git
+   cd your-repo
+   ```
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/9573ddd4-147f-48e9-88fe-53920dd997c2) and start prompting.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Changes made via Lovable will be committed automatically to this repo.
+## Environment Variables
 
-**Use your preferred IDE**
+This project uses environment variables to store sensitive API keys. Do **not** commit your `.env` file to Git.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1. Create a `.env` file in the project root:
+   ```bash
+   touch .env
+   ```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+2. Add your API keys to `.env` (replace the placeholder values with your actual keys):
+   ```dotenv
+   VITE_GOOGLE_GEMINI_API_KEY=your-google-gemini-api-key
+   VITE_TAVILY_API_KEY=your-tavily-api-key
+   ```
 
-Follow these steps:
+3. Ensure `.env` is ignored by Git by including it in your `.gitignore`:
+   ```gitignore
+   # Environment Variables
+   .env
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Usage
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Start the development server:
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Open your browser and navigate to `http://localhost:3000` (or the port specified in the console).
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Building for Production
 
-**Use GitHub Codespaces**
+To create an optimized production build:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+npm run build
+```
 
-## What technologies are used for this project?
+To preview the production build locally:
 
-This project is built with:
+```bash
+npm run preview
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Folder Structure
 
-## How can I deploy this project?
+```text
+.
+├── public/             # Static assets
+├── src/                # Source code
+│   ├── components/     # React/Vue/Svelte components
+│   ├── pages/          # Page components or routes
+│   ├── styles/         # CSS or SCSS files
+│   └── main.js         # App entry point
+├── .env                # Environment variables (local only)
+├── .gitignore          # Ignored files
+├── package.json        # npm scripts and dependencies
+└── README.md           # This file
+```
 
-Simply open [Lovable](https://lovable.dev/projects/9573ddd4-147f-48e9-88fe-53920dd997c2) and click on Share -> Publish.
+## Contributing
 
-## Can I connect a custom domain to my Lovable project?
+1. Fork the repo
+2. Create a new branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
 
-Yes, you can!
+## License
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+[MIT](LICENSE)
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
+
+*Feel free to customize this README to fit your project details.*
+
