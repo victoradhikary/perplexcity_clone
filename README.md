@@ -1,6 +1,6 @@
 # Project Name
 
-A brief description of what this project does and who it's for.
+Perplexity Clone is an open-source, AI-driven question-answer web application that replicates Perplexity’s core functionality. Harnessing the power of Tavily API for high-speed web search and the Google Gemini API for cutting-edge natural language generation, this project showcases an end-to-end solution for integrating AI search and generative text into modern web apps. Built with Vite, React, and TypeScript, it offers developers a robust starting point to create intelligent, conversational user experiences.
 
 ## Prerequisites
 
