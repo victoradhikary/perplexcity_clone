@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import ChatBubble from "@/components/ChatBubble";
@@ -5,7 +6,7 @@ import Sidebar from "@/components/Sidebar";
 import SearchBar from "@/components/SearchBar";
 import { tavilySearch } from "@/services/tavilyService";
 import { createGeminiPrompt, generateWithGemini } from "@/services/geminiService";
-import { QueryResult } from "@/types";
+import { QueryResult, Source } from "@/types";
 import { createQueryResult, getQueryHistory, saveQueryToHistory } from "@/utils/helpers";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "@/components/ui/sonner";
