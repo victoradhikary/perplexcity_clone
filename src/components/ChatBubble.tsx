@@ -3,6 +3,7 @@ import { ThumbsUp, ThumbsDown } from "lucide-react";
 import { QueryResult } from "@/types";
 import { parseCitations } from "@/utils/helpers";
 import SourceCitation from "./SourceCitation";
+import ReactMarkdown from "react-markdown";
 
 interface ChatBubbleProps {
   query: QueryResult;
@@ -25,10 +26,16 @@ const ChatBubble = ({ query, onFeedback }: ChatBubbleProps) => {
       {/* AI answer */}
       <div className="flex flex-col">
         <div className="chat-bubble-ai max-w-[90%] sm:max-w-[85%]">
-          <div className="prose dark:prose-invert text-sm sm:text-base">
+          <div className="prose prose-invert dark:prose-invert max-w-none text-sm sm:text-base">
             {parsedAnswer.map((part, index) => (
               <span key={index} className={part.citationIndex ? "font-medium text-perplexity hover:underline cursor-pointer" : ""}>
-                {part.text}
+                {part.citationIndex ? (
+                  part.text
+                ) : (
+                  <ReactMarkdown className="inline">
+                    {part.text}
+                  </ReactMarkdown>
+                )}
               </span>
             ))}
           </div>

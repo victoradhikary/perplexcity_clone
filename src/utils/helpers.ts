@@ -16,8 +16,9 @@ export function extractDomain(url: string): string {
 
 /**
  * Parse citations from text
- * Example: "This is a fact [1] and another fact [2]"
- * Returns: [{text: "This is a fact ", citationIndex: 1}, {text: " and another fact ", citationIndex: 2}]
+ * Preserves markdown formatting while extracting citations
+ * Example: "This is a **fact** [1] and another fact [2]"
+ * Returns: [{text: "This is a **fact** ", citationIndex: 1}, {text: " and another fact ", citationIndex: 2}]
  */
 export function parseCitations(text: string): { text: string; citationIndex?: number }[] {
   const citationRegex = /\[(\d+)\]/g;
