@@ -134,11 +134,11 @@ const Index = () => {
         currentQueryId={currentQuery?.id || null}
       />
       
-      <main className="flex-1 flex flex-col items-center px-4 py-6 overflow-hidden">
+      <main className="flex-1 flex flex-col items-center px-4 sm:px-6 py-6 overflow-hidden relative">
         {!hasSearched ? (
-          <div className="w-full max-w-4xl mx-auto">
-            <div className="text-center mt-16 mb-12">
-              <h1 className="text-4xl font-bold mb-4 text-white">
+          <div className="w-full max-w-4xl mx-auto mt-8 sm:mt-16">
+            <div className="text-center mb-8 sm:mb-12">
+              <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-white">
                 What do you want to know?
               </h1>
               
@@ -150,10 +150,10 @@ const Index = () => {
             </div>
           </div>
         ) : (
-          <div className="w-full max-w-4xl mx-auto">
+          <div className="w-full max-w-4xl mx-auto space-y-6">
             {isLoading ? (
               <div className="flex flex-col items-center justify-center py-12">
-                <div className="w-10 h-10 border-4 border-perplexity border-t-transparent rounded-full animate-spin mb-4"></div>
+                <div className="w-8 h-8 sm:w-10 sm:h-10 border-4 border-perplexity border-t-transparent rounded-full animate-spin mb-4"></div>
                 <p className="text-gray-400">Searching for answers...</p>
               </div>
             ) : (
@@ -165,7 +165,7 @@ const Index = () => {
               )
             )}
             
-            <div className="sticky bottom-4 mt-4">
+            <div className="sticky bottom-4 mt-4 px-4 sm:px-0">
               <SearchBar 
                 onSearch={handleSearch}
                 className="shadow-lg"

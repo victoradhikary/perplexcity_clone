@@ -11,23 +11,21 @@ interface ChatBubbleProps {
 
 const ChatBubble = ({ query, onFeedback }: ChatBubbleProps) => {
   const { id, question, answer, sources, feedback } = query;
-  
-  // Parse the answer text to identify citations
   const parsedAnswer = parseCitations(answer);
 
   return (
-    <div className="w-full max-w-4xl mx-auto mb-8">
+    <div className="w-full max-w-4xl mx-auto space-y-4 px-4 sm:px-0">
       {/* User question */}
       <div className="flex justify-end mb-4">
-        <div className="chat-bubble-user">
-          <p>{question}</p>
+        <div className="chat-bubble-user max-w-[90%] sm:max-w-[85%]">
+          <p className="text-sm sm:text-base">{question}</p>
         </div>
       </div>
       
       {/* AI answer */}
-      <div className="flex flex-col mb-2">
-        <div className="chat-bubble-ai mb-2">
-          <div className="prose dark:prose-invert">
+      <div className="flex flex-col">
+        <div className="chat-bubble-ai max-w-[90%] sm:max-w-[85%]">
+          <div className="prose dark:prose-invert text-sm sm:text-base">
             {parsedAnswer.map((part, index) => (
               <span key={index} className={part.citationIndex ? "font-medium text-perplexity hover:underline cursor-pointer" : ""}>
                 {part.text}
@@ -60,7 +58,7 @@ const ChatBubble = ({ query, onFeedback }: ChatBubbleProps) => {
         
         {/* Sources section */}
         {sources.length > 0 && (
-          <div className="ml-2">
+          <div className="ml-2 mt-2">
             <h3 className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Sources:</h3>
             <div className="flex flex-col gap-1">
               {sources.map((source, index) => (
