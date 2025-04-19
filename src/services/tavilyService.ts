@@ -1,7 +1,7 @@
 import { TavilyEmbedParams, TavilyEmbedResult, TavilySearchParams, TavilySearchResult } from "@/types";
 import { toast } from "@/components/ui/sonner";
 
-const TAVILY_API_KEY = "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";
+const TAVILY_API_KEY      = import.meta.env.VITE_TAVILY_API_KEY!;
 const TAVILY_API_BASE_URL = "https://api.tavily.com";
 
 /**

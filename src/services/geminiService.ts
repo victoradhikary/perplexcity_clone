@@ -1,7 +1,7 @@
 
 import { GeminiParams, GeminiResult } from "@/types";
 
-const GOOGLE_GEMINI_API_KEY = "AIzaSyA2p-IW_M5H1aJ-ZNOjK5VxowzC3rP0o1A";
+const GOOGLE_GEMINI_API_KEY = import.meta.env.VITE_GOOGLE_GEMINI_API_KEY!;
 const GEMINI_API_BASE_URL = "https://generativelanguage.googleapis.com/v1beta";
 const GEMINI_MODEL = "gemini-2.0-flash";
 
