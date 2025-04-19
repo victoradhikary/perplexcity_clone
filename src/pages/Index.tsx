@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import ChatBubble from "@/components/ChatBubble";
@@ -118,7 +117,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-perplexity-bg text-white">
+    <div className="min-h-screen flex flex-col bg-background dark:bg-background text-foreground dark:text-foreground">
       <Header 
         onToggleSidebar={() => setIsSidebarOpen(prev => !prev)}
         isSidebarOpen={isSidebarOpen}
