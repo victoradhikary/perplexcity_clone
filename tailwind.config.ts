@@ -52,7 +52,7 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        perplexity: {
+        curiosity: {
           DEFAULT: "#00A3FF",
           light: "#33B4FF",
           dark: "#0082CC",

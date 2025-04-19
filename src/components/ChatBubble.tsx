@@ -1,8 +1,7 @@
 
-import { ThumbsUp, ThumbsDown, Link } from "lucide-react";
 import { QueryResult } from "@/types";
 import { parseCitations } from "@/utils/helpers";
-import SourceCitation from "./SourceCitation";
+import { Link, ThumbsDown, ThumbsUp } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
 interface ChatBubbleProps {
@@ -66,7 +65,7 @@ const ChatBubble = ({ query, onFeedback }: ChatBubbleProps) => {
         {parsedAnswer.map((part, index) => (
           <span 
             key={index} 
-            className={part.citationIndex ? "font-medium text-perplexity hover:underline cursor-pointer transition-colors" : ""}
+            className={part.citationIndex ? "font-medium text-curiosity hover:underline cursor-pointer transition-colors" : ""}
           >
             {part.citationIndex ? (
               part.text
@@ -84,7 +83,7 @@ const ChatBubble = ({ query, onFeedback }: ChatBubbleProps) => {
         <button 
           onClick={() => onFeedback(id, feedback === 'upvote' ? null : 'upvote')}
           className={`p-2 rounded-lg hover:bg-white/5 transition-all duration-200 ${
-            feedback === 'upvote' ? 'text-perplexity' : 'text-white/50'
+            feedback === 'upvote' ? 'text-curiosity' : 'text-white/50'
           }`}
           aria-label="Helpful"
         >

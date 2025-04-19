@@ -1,7 +1,7 @@
 
-import { Clock, X, PlusCircle } from "lucide-react";
 import { QueryResult } from "@/types";
 import { formatRelativeTime } from "@/utils/helpers";
+import { Clock, PlusCircle, X } from "lucide-react";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -41,7 +41,7 @@ const Sidebar = ({
       <div className="p-4">
         <button 
           onClick={onNewChat}
-          className="w-full flex items-center justify-center gap-2 perplexity-button"
+          className="w-full flex items-center justify-center gap-2 curiosity-button"
         >
           <PlusCircle className="h-4 w-4" />
           <span>New Chat</span>

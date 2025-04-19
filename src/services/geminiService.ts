@@ -75,7 +75,7 @@ URL: ${result.url}`
   )).join('\n\n');
   
   // Create the full prompt with instructions
-  return `Answer the following question based on the provided search results. Include relevant information from the sources, and cite the sources using [1], [2], etc.
+  return `Answer the following question based on the provided search results. Include relevant information from the sources.
 
 Question: ${question}
 
@@ -84,7 +84,7 @@ ${formattedContext}
 
 Instructions:
 1. Answer directly and clearly
-2. Cite sources using numbers in square brackets [1], [2], etc.
+2. Add extra information if relevant
 3. Be factual and precise
 4. If the sources don't contain enough information to fully answer the question, acknowledge this
 5. Use a conversational, helpful tone

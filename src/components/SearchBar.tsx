@@ -1,5 +1,5 @@
 
-import { Search, Globe, Link, Download } from "lucide-react";
+import { Download, Globe, Link, Search } from "lucide-react";
 import { useState } from "react";
 
 interface SearchBarProps {
@@ -33,21 +33,21 @@ const SearchBar = ({ onSearch, className = "", placeholder = "Ask anything..." }
         <div className="flex items-center gap-1 sm:gap-2 ml-2">
           <button 
             type="button" 
-            className="p-1 sm:p-1.5 md:p-2 hover:bg-perplexity-bg-lighter rounded-lg hidden sm:block"
+            className="p-1 sm:p-1.5 md:p-2 hover:bg-curiosity-bg-lighter rounded-lg hidden sm:block"
             aria-label="Web search"
           >
             <Globe className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
           </button>
           <button 
             type="button" 
-            className="p-1 sm:p-1.5 md:p-2 hover:bg-perplexity-bg-lighter rounded-lg hidden sm:block"
+            className="p-1 sm:p-1.5 md:p-2 hover:bg-curiosity-bg-lighter rounded-lg hidden sm:block"
             aria-label="Link to resource"
           >
             <Link className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
           </button>
           <button
             type="submit"
-            className="p-1 sm:p-1.5 md:p-2 bg-perplexity hover:bg-perplexity-dark rounded-lg text-white"
+            className="p-1 sm:p-1.5 md:p-2 bg-curiosity hover:bg-curiosity-dark rounded-lg text-white"
             aria-label="Submit question"
           >
             <Download className="h-4 w-4 sm:h-5 sm:w-5" />

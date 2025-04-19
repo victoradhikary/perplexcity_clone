@@ -1,7 +1,7 @@
 
 import { Search } from "lucide-react";
-import DarkModeToggle from "./DarkModeToggle";
 import { useState } from "react";
+import DarkModeToggle from "./DarkModeToggle";
 
 interface HeaderProps {
   onToggleSidebar: () => void;
@@ -78,7 +78,7 @@ const Header = ({ onToggleSidebar, isSidebarOpen, onSearch }: HeaderProps) => {
               />
             </svg>
           </button>
-          <div className="text-lg font-semibold text-perplexity">QuerySpark</div>
+          <div className="text-lg font-semibold text-curiosity">Curiosity</div>
         </div>
         
         <div className="flex-1 max-w-2xl mx-4 relative">
