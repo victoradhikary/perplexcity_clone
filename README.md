@@ -12,7 +12,7 @@ A brief description of what this project does and who it's for.
 1. Clone the repository:
    ```bash
    git clone https://github.com/victoradhikary/perplexcity_clone.git
-   cd your-repo
+   cd perplexity_clone
    ```
 
 2. Install dependencies:
@@ -89,11 +89,4 @@ npm run preview
 4. Push to the branch (`git push origin feature/your-feature`)
 5. Open a Pull Request
 
-## License
-
-[MIT](LICENSE)
-
----
-
-*Feel free to customize this README to fit your project details.*
 
